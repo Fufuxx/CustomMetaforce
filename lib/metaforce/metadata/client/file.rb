@@ -97,12 +97,14 @@ module Metaforce
 
         def retrieve(options={})
           #Job::Retrieve.new(self, options)
+          p "Retrieve class call"
           RetrieveJob.new(self, options)
         end
 
         # Public: Retrieves files specified in the manifest file (A package.xml
         # file).
         def retrieve_unpackaged(manifest, options={})
+          p "Retrieve Unpackage metaforce"
           package = if manifest.is_a?(Metaforce::Manifest)
             manifest
           elsif manifest.is_a?(String)
