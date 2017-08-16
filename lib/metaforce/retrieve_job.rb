@@ -19,9 +19,10 @@ module Metaforce
     #   # => #<Metaforce::Job @id=nil>
     #
     # Returns self.
-    def initialize(client)
+    def initialize(client, options={})
       @_callbacks = Hash.new { |h,k| h[k] = [] }
       @client = client
+      @options = options
     end
 
     # Public: Perform the job.
@@ -34,6 +35,7 @@ module Metaforce
     #
     # Returns self.
     def perform
+      @id = client._retrieve(@options).id
       start_heart_beat
       self
     end
