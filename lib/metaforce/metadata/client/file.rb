@@ -53,6 +53,12 @@ module Metaforce
         #     soap.body = { :ids => ids }
         #   end
         # end
+        def checkDeployStatus(id, details='true')
+          request :check_deploy_status do |soap|
+            soap.body = { :asyncProcessId => id, :includeDetails => details }
+          end
+        end
+
 
         def checkRetrieveStatus(id, zip='false')
           request :check_retrieve_status do |soap|
