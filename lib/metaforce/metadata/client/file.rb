@@ -36,29 +36,12 @@ module Metaforce
           end
         end
 
-        # Public: Checks the status of an async result.
-        #
-        # ids  - A list of ids to check.
-        # type - either :deploy or :retrieve
-        #
-        # Examples
-        #
-        #   client.status('04sU0000000Wx6KIAS')
-        #   #=> {:done=>true, :id=>"04sU0000000Wx6KIAS", :state=>"Completed", ...}
-        # def status(ids, type=nil)
-        #   method = :check_status
-        #   method = :"check_#{type}_status" if type
-        #   ids = [ids] unless ids.respond_to?(:each)
-        #   request method do |soap|
-        #     soap.body = { :ids => ids }
-        #   end
-        # end
+        # New Status - one for Deploy / one for Retrieve v40.0
         def checkDeployStatus(id, details='true')
           request :check_deploy_status do |soap|
             soap.body = { :asyncProcessId => id, :includeDetails => details }
           end
         end
-
 
         def checkRetrieveStatus(id, zip='false')
           request :check_retrieve_status do |soap|
