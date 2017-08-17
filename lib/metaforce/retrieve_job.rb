@@ -244,6 +244,7 @@ module Metaforce
       Zip::File.open(source) do |zip|
         zip.each do |f|
           path = File.join(destination, f.name)
+          p "======= File path is #{path} ======="
           FileUtils.mkdir_p(File.dirname(path))
           zip.extract(f, path) { true }
         end
